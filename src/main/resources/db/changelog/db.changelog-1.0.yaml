@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: assar
+      changes:
+        - createTable:
+            tableName: order
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: UUID
+              - column:
+                  name: date
+                  type: timestamp
+  - changeSet:
+      id: 2
+      author: assar
+      changes:
+        - createTable:
+            tableName: item
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: unit_price
+                  type: decimal(19,2)
+  - changeSet:
+      id: 3
+      author: assar
+      changes:
+        - createTable:
+            tableName: order_item
+            columns:
+              - column:
+                  name: order_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    foreignKeyName: fk_orderitem_order
+                    referencedTableName: order
+                    referencedColumnNames: id
+              - column:
+                  name: item_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    foreignKeyName: fk_orderitem_item
+                    referencedTableName: item
+                    referencedColumnNames: id
+              - column:
+                  name: amount
+                  type: int
+              - column:
+                  name: total_price
+                  type: decimal(19,2)
