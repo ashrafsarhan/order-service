@@ -17,12 +17,13 @@ Navigate to the project directory:
 
 ```bash
 cd order-service
+```
 
 #### Unix based system
 
 Build the project using the Maven wrapper script:
 
-```
+```bash
 ./mvnw clean install
 ```
 
@@ -30,7 +31,7 @@ Build the project using the Maven wrapper script:
 
 On Windows, use the mvnw.cmd script instead:
 
-```
+```bash
 mvnw.cmd clean install
 ```
 
@@ -41,7 +42,7 @@ mvnw.cmd clean install
 
 To build the project and run the integration tests, use the following command:
 
-```
+```bash
 ./mvnw clean test-compile failsafe:integration-test
 ```
 
@@ -51,23 +52,19 @@ To build the project and run the integration tests, use the following command:
 
 Run the project using the Spring Boot Maven plugin:
 
-```
+```bash
 ./mvnw spring-boot:run
 ```
 
 * By default, the application will run on port 8080. You can specify a different port with the --server.port argument:
 
-```
+```bash
 ./mvnw spring-boot:run -Dspring-boot.run.arguments=--server.port=8000
 ```
 
 #### Swagger
-You access the swagger documentation by the following URL
-
-```
+You access the swagger documentation by the following URL:
 http://127.0.1.1:8080/order-service/swagger
-
-```
 
 ### Spring boot version needs to be updated to 3.2.4 to mitigate CVE-2024-22259, this version is supposed to be released by March 21, 2024
 https://github.com/spring-projects/spring-boot/milestone/338
