@@ -4,7 +4,7 @@ databaseChangeLog:
       author: assar
       changes:
         - createTable:
-            tableName: order
+            tableName: orders
             columns:
               - column:
                   name: id
@@ -51,7 +51,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
                     foreignKeyName: fk_orderitem_order
-                    referencedTableName: order
+                    referencedTableName: orders
                     referencedColumnNames: id
               - column:
                   name: item_id
