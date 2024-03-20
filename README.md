@@ -4,7 +4,7 @@ This service manages the orders and items for a simple web store.
 
 # Getting Started
 
-These instructions will help you getting the project up and running on your local machine for development and testing purposes.
+These instructions will help you to get the project up and running on your local machine for development and testing purposes.
 
 
 ### Prerequisites
