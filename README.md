@@ -62,6 +62,34 @@ Run the project using the Spring Boot Maven plugin:
 ./mvnw spring-boot:run -Dspring-boot.run.arguments=--server.port=8000
 ```
 
+#### Using Docker
+
+* Docker build
+
+```bash
+docker build -t order-service .
+```
+
+* Docker run with embedded H2 database
+
+```bash
+docker run -p 8080:8080 order-service
+```
+
+* Docker run with Postgres database
+* Create a network
+```bash
+docker network create --driver bridge order-svc-net
+```
+̈́* Run the Postgres container
+```bash
+docker run --name postgresql -e POSTGRES_USER=order_service -e POSTGRES_PASSWORD=order_service -p 5432:5432 --network order-svc-net -d postgres 
+```
+* Run the order-service container
+```bash
+docker run --name order_service -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=postgres" --network order-svc-net -d order-service
+```
+
 #### Swagger
 You access the swagger documentation by the following URL:
 http://127.0.1.1:8080/order-service/swagger
