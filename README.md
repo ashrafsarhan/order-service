@@ -94,9 +94,6 @@ docker run --name order_service -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=postgres
 You access the swagger documentation by the following URL:
 http://127.0.1.1:8080/order-service/swagger
 
-### Spring boot version needs to be updated to 3.2.4 to mitigate CVE-2024-22259, this version is supposed to be released by March 21, 2024
-https://github.com/spring-projects/spring-boot/milestone/338
-
 ### Reference Documentation
 
 For further reference, please consider the following sections:
