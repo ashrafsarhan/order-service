@@ -73,10 +73,11 @@ docker build -t order-service .
 * Docker run with embedded H2 database
 
 ```bash
-docker run -p 8080:8080 order-service
+docker run --name order_service -p 8080:8080 -d order-service
 ```
 
 * Docker run with Postgres database
+
 * Create a network
 ```bash
 docker network create --driver bridge order-svc-net
@@ -87,7 +88,32 @@ docker run --name postgresql -e POSTGRES_USER=order_service -e POSTGRES_PASSWORD
 ```
 * Run the order-service container
 ```bash
-docker run --name order_service -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=postgres" --network order-svc-net -d order-service
+docker run --name order_service -e "SPRING_PROFILES_ACTIVE=postgres" -p 8080:8080 --network order-svc-net -d order-service
+```
+
+#### Using Podman
+
+* Docker build
+
+```bash
+podman build -t order-service .
+```
+
+* Docker run with embedded H2 database
+
+```bash
+podman run --name order_service -p 8080:8080 -d order-service
+```
+
+* Docker run with Postgres database
+
+̈́* Run the Postgres container
+```bash
+podman run --name postgresql -e POSTGRES_USER=order_service -e POSTGRES_PASSWORD=order_service --network=host  -d postgres 
+```
+* Run the order-service container
+```bash
+podman run --name order_service -e "SPRING_PROFILES_ACTIVE=postgres" -e "DB_HOST=localhost" --network=host -d order-service
 ```
 
 #### Swagger
