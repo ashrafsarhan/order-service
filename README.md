@@ -93,32 +93,37 @@ docker run --name order_service -e "SPRING_PROFILES_ACTIVE=postgres" -p 8080:808
 
 #### Using Podman
 
-* Docker build
+* Podman build
 
 ```bash
 podman build -t order-service .
 ```
 
-* Docker run with embedded H2 database
+* Podman run with embedded H2 database
 
 ```bash
 podman run --name order_service -p 8080:8080 -d order-service
 ```
 
-* Docker run with Postgres database
+* Podman run with Postgres database
+
+* Create a new pod
+```bash
+podman pod create --name order-svc-pod -p 127.0.0.1:5432:5432 -p 127.0.0.1:8080:8080
+```
 
 ̈́* Run the Postgres container
 ```bash
-podman run --name postgresql -e POSTGRES_USER=order_service -e POSTGRES_PASSWORD=order_service --network=host  -d postgres 
+podman run --name postgresql -e POSTGRES_USER=order_service -e POSTGRES_PASSWORD=order_service --pod order-svc-pod -d postgres 
 ```
 * Run the order-service container
 ```bash
-podman run --name order_service -e "SPRING_PROFILES_ACTIVE=postgres" -e "DB_HOST=localhost" --network=host -d order-service
+podman run --name order_service -e "SPRING_PROFILES_ACTIVE=postgres" --pod order-svc-pod -d order-service
 ```
 
 #### Swagger
 You access the swagger documentation by the following URL:
-http://127.0.1.1:8080/order-service/swagger
+http://127.0.0.1:8080/order-service/swagger
 
 ### Reference Documentation
 
